@@ -4,8 +4,7 @@ import pytest
 from gumo.core import EntityKeyFactory
 from dataclass_type_validator import TypeValidationError
 
-from todo.domain import TaskKey
-from todo.domain import Task
+from todo.domain import Task, TaskKey, TaskName
 
 
 class TestTaskKey:
@@ -26,7 +25,7 @@ class TestTask:
     def test_build_successful(self):
         task = Task(
             key=TaskKey.build_by_id(task_id=1),
-            name="Task Name",
+            name=TaskName("Task Name"),
             created_at=datetime.datetime(
                 2019, 12, 1, 0, 0, 0, tzinfo=datetime.timezone.utc
             ),
@@ -37,7 +36,7 @@ class TestTask:
         with pytest.raises(expected_exception=TypeValidationError):
             Task(
                 key=TaskKey.build_by_id(task_id=1),
-                name=1,
+                name="task name",
                 created_at=datetime.datetime(
                     2019, 12, 1, 0, 0, 0, tzinfo=datetime.timezone.utc
                 ),

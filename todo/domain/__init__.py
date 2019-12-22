@@ -33,9 +33,25 @@ class TaskKey(EntityKey):
 
 
 @dataclasses.dataclass(frozen=True)
+class TaskName:
+    value: str
+
+    MAX_LENGTH = 100
+
+    def __post_init__(self):
+        dataclass_type_validator(self)
+
+        if len(self.value) == 0:
+            raise ValueError(f"TaskName must be present.")
+
+        if len(self.value) > self.MAX_LENGTH:
+            raise ValueError(f"TaskName is too long (maximum length is {self.MAX_LENGTH})")
+
+
+@dataclasses.dataclass(frozen=True)
 class Task:
     key: TaskKey
-    name: str
+    name: TaskName
     created_at: datetime.datetime
 
     def __post_init__(self):
