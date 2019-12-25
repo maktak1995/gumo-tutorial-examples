@@ -2,6 +2,7 @@ import dataclasses
 import datetime
 
 from gumo.core import EntityKey
+from gumo.core import EntityKeyFactory
 from gumo.core import NoneKey
 from gumo.core import EntityKeyGenerator
 from dataclass_type_validator import dataclass_type_validator
@@ -26,6 +27,12 @@ class TaskKey(EntityKey):
             raise ValueError(f"key.KIND must equal to {cls.KIND}: {key.key_literal()}")
 
         return cls.build_by_id(task_id=key.name())
+
+    @classmethod
+    def build_for_new(cls) -> "TaskKey":
+        incomplete_key = EntityKeyFactory().build_incomplete_key(cls.KIND)
+        entity_key = cls.key_generator.generate(incomplete_key=incomplete_key)
+        return cls.build_from_key(entity_key)
 
     @property
     def task_id(self) -> int:
