@@ -17,7 +17,7 @@ class TaskCreateService:
         task = Task(
             key=TaskKey.build_for_new(),
             name=TaskName(task_name),
-            created_at=datetime.datetime.utcnow().astimezone(tz=datetime.datetime.utc),
+            created_at=datetime.datetime.utcnow().astimezone(tz=datetime.timezone.utc),
         )
 
         self.task_repository.save(task=task)

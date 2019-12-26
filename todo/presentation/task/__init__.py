@@ -3,6 +3,7 @@ import flask.views
 from gumo.core.injector import injector
 from todo.application.task.repository import TaskRepository
 from todo.application.task import TaskCreateService
+from todo.domain import TaskKey
 
 
 class TasksView(flask.views.MethodView):
@@ -16,5 +17,14 @@ class TasksView(flask.views.MethodView):
         task_name: str = flask.request.form.get("task_name", "")
         service: TaskCreateService = injector.get(TaskCreateService)
         service.execute(task_name=task_name)
+
+        return flask.redirect("/tasks")
+
+
+class TaskDeleteView(flask.views.MethodView):
+    def post(self, task_id):
+        task_key = TaskKey.build_by_id(task_id=task_id)
+        repository: TaskRepository = injector.get(TaskRepository)
+        repository.delete(key=task_key)
 
         return flask.redirect("/tasks")

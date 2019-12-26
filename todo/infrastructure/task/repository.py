@@ -17,6 +17,10 @@ class DatastoreTaskRepository(DatastoreRepositoryMixin, TaskRepository):
         doc = model.to_datastore_entity()
         self.datastore_client.put(doc)
 
+    def delete(self, key: TaskKey):
+        datastore_key = self.to_datastore_key(entity_key=key)
+        self.datastore_client.delete(datastore_key)
+
     def fetch_no_raise(self, key: TaskKey) -> typing.Optional[Task]:
         datastore_key = self.to_datastore_key(entity_key=key)
         doc = self.datastore_client.get(key=datastore_key)

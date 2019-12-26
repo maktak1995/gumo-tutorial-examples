@@ -6,6 +6,9 @@ class TaskRepository:
     def save(self, task: Task):
         raise NotImplementedError()
 
+    def delete(self, key: TaskKey):
+        raise NotImplementedError()
+
     def fetch(self, key: TaskKey):
         task = self.fetch_no_raise(key=key)
         if task is None:
