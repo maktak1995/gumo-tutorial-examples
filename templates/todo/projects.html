@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <title>Gumo Example</title>
+</head>
+<body>
+<h1>Gumo Example</h1>
+
+<h2>Projects</h2>
+<ul>
+    {% for project in projects %}
+        <li>
+            {{ project.name.value }} ({{ project.created_at.isoformat() }})
+        </li>
+    {% endfor %}
+</ul>
+
+<form action="/projects" method="post">
+    <input type="text" name="project_name">
+    <input type="submit" value="create">
+</form>
+
+</body>
+</html>
