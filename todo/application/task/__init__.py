@@ -39,7 +39,7 @@ class TaskUpdateService:
         if finished:
             modified_task = task.to_finished_now()
         else:
-            modified_task = task.with_finished_at(finished_at=None)
+            modified_task = task.to_canceled_finish()
 
         self.task_repository.save(task=modified_task)
 
