@@ -13,6 +13,7 @@ blueprint = flask.Blueprint("blueprint", __name__)
 register_views(blueprint=blueprint)
 app.register_blueprint(blueprint=blueprint)
 
+
 @app.route('/')
 def root():
     dummy_todos = [

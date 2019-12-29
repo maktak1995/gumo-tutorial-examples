@@ -12,7 +12,6 @@ class TestTaskService(DatastoreRepositoryMixinForTest):
 
     def test_create_service(self):
         self.cleanup_entities()
-        self.cleanup_entities()
         assert self.count_entities() == 0
 
         task_name = "TaskName"
