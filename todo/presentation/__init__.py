@@ -1,6 +1,6 @@
 import flask
 
-from todo.presentation.task import TasksView, TaskDeleteView, TaskUpdateView
+from todo.presentation.task import TasksView, TaskDeleteView, TaskStatusUpdateView, TaskNameUpdateView
 
 
 def register_views(blueprint: flask.Blueprint):
@@ -17,7 +17,13 @@ def register_views(blueprint: flask.Blueprint):
     )
 
     blueprint.add_url_rule(
-        rule="/tasks/<task_id>/update",
-        view_func=TaskUpdateView.as_view("tasks/update"),
+        rule="/tasks/<task_id>/update/status",
+        view_func=TaskStatusUpdateView.as_view("tasks/update/status"),
+        methods=["POST"]
+    )
+
+    blueprint.add_url_rule(
+        rule="/tasks/<task_id>/update/name",
+        view_func=TaskNameUpdateView.as_view("tasks/update/name"),
         methods=["POST"]
     )

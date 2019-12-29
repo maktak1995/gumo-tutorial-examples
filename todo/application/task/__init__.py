@@ -28,7 +28,7 @@ class TaskCreateService:
         return task
 
 
-class TaskUpdateService:
+class TaskStatusUpdateService:
     @inject
     def __init__(self, task_repository: TaskRepository):
         self.task_repository = task_repository
@@ -40,6 +40,20 @@ class TaskUpdateService:
             modified_task = task.to_finished_now()
         else:
             modified_task = task.to_canceled_finish()
+
+        self.task_repository.save(task=modified_task)
+
+        return modified_task
+
+
+class TaskNameUpdateService:
+    @inject
+    def __init__(self, task_repository: TaskRepository):
+        self.task_repository = task_repository
+
+    def execute(self, key: TaskKey, task_name: str) -> "Task":
+        task = self.task_repository.fetch(key=key)
+        modified_task = task.to_changed_task_name(task_name=TaskName(task_name))
 
         self.task_repository.save(task=modified_task)
 
