@@ -1,5 +1,6 @@
 import dataclasses
 import datetime
+import re
 from typing import Optional
 
 from gumo.core import EntityKey
@@ -56,6 +57,9 @@ class TaskName:
 
         if len(self.value) > self.MAX_LENGTH:
             raise ValueError(f"TaskName is too long (maximum length is {self.MAX_LENGTH})")
+
+        if re.fullmatch(r'\s', self.value):
+            raise ValueError(f"Only space character cannot be used as TaskName")
 
 
 @dataclasses.dataclass(frozen=True)
