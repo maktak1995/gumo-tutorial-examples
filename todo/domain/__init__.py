@@ -87,3 +87,6 @@ class Task:
         return self.with_finished_at(
             finished_at=datetime.datetime.utcnow().astimezone(tz=datetime.timezone.utc)
         )
+
+    def to_changed_task_name(self, task_name: TaskName) -> "Task":
+        return self._clone(name=task_name)

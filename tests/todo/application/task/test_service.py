@@ -2,7 +2,7 @@ import main
 
 from gumo.datastore.infrastructure.test_utils import DatastoreRepositoryMixinForTest
 from todo.application.task.repository import TaskRepository
-from todo.application.task import TaskCreateService, TaskUpdateService
+from todo.application.task import TaskCreateService, TaskStatusUpdateService
 from todo.domain import TaskKey
 
 
@@ -28,7 +28,7 @@ class TestTaskService(DatastoreRepositoryMixinForTest):
         create_service = main.injector.get(TaskCreateService)
         task = create_service.execute(task_name=task_name)
 
-        update_service = main.injector.get(TaskUpdateService)
+        update_service = main.injector.get(TaskStatusUpdateService)
         updated_task = update_service.execute(key=task.key, finished=True)
 
         assert updated_task.is_finished
