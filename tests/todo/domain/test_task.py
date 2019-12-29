@@ -4,7 +4,7 @@ import pytest
 from gumo.core import EntityKeyFactory
 from dataclass_type_validator import TypeValidationError
 
-from todo.domain import Task, TaskKey, TaskName
+from todo.domain.task import Task, TaskKey, TaskName
 
 
 class TestTaskKey:

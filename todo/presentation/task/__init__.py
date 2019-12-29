@@ -3,7 +3,7 @@ import flask.views
 from gumo.core.injector import injector
 from todo.application.task.repository import TaskRepository
 from todo.application.task import TaskCreateService, TaskStatusUpdateService, TaskNameUpdateService
-from todo.domain import TaskKey
+from todo.domain.task import TaskKey
 
 
 class TasksView(flask.views.MethodView):

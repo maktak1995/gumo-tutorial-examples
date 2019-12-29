@@ -3,7 +3,7 @@ from gumo.datastore.infrastructure import DatastoreRepositoryMixin
 from gumo.datastore.infrastructure import DatastoreEntity
 
 from todo.application.task.repository import TaskRepository
-from todo.domain import Task, TaskKey, TaskName
+from todo.domain.task import Task, TaskKey, TaskName
 from . import TaskDataModel
 
 

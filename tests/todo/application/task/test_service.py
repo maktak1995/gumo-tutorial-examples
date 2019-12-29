@@ -3,7 +3,7 @@ import main
 from gumo.datastore.infrastructure.test_utils import DatastoreRepositoryMixinForTest
 from todo.application.task.repository import TaskRepository
 from todo.application.task import TaskCreateService, TaskStatusUpdateService, TaskNameUpdateService
-from todo.domain import TaskKey
+from todo.domain.task import TaskKey
 
 
 class TestTaskService(DatastoreRepositoryMixinForTest):
@@ -11,6 +11,7 @@ class TestTaskService(DatastoreRepositoryMixinForTest):
     repository: TaskRepository = main.injector.get(TaskRepository)
 
     def test_create_service(self):
+        self.cleanup_entities()
         self.cleanup_entities()
         assert self.count_entities() == 0
 

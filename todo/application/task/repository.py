@@ -1,5 +1,5 @@
 import typing
-from todo.domain import Task, TaskKey
+from todo.domain.task import Task, TaskKey
 
 
 class TaskRepository:

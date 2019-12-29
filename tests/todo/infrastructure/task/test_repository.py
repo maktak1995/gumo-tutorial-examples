@@ -3,7 +3,7 @@ import datetime
 
 from gumo.datastore.infrastructure.test_utils import DatastoreRepositoryMixinForTest
 from todo.application.task.repository import TaskRepository
-from todo.domain import Task, TaskKey, TaskName
+from todo.domain.task import Task, TaskKey, TaskName
 
 
 class TestTaskRepository(DatastoreRepositoryMixinForTest):

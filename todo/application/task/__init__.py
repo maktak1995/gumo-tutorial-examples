@@ -3,9 +3,7 @@ import datetime
 from injector import inject
 
 from todo.application.task.repository import TaskRepository
-from todo.domain import Task
-from todo.domain import TaskKey
-from todo.domain import TaskName
+from todo.domain.task import Task, TaskKey, TaskName
 
 
 class TaskCreateService:
