@@ -83,6 +83,9 @@ class Task:
     def with_finished_at(self, finished_at: Optional[datetime.datetime]) -> "Task":
         return self._clone(finished_at=finished_at)
 
+    def to_canceled_finish(self) -> "Task":
+        return self._clone(finished_at=None)
+
     def to_finished_now(self) -> "Task":
         return self.with_finished_at(
             finished_at=datetime.datetime.utcnow().astimezone(tz=datetime.timezone.utc)
