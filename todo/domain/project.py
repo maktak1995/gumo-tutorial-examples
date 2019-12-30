@@ -17,10 +17,10 @@ class ProjectKey(EntityKey):
     )
 
     @classmethod
-    def build_by_id(cls, task_id: int) -> "ProjectKey":
-        if isinstance(task_id, str) and task_id.isdigit():
-            task_id = int(task_id)
-        return cls(_kind=cls.KIND, _name=task_id, _parent=NoneKey.get_instance(),)
+    def build_by_id(cls, project_id: int) -> "ProjectKey":
+        if isinstance(project_id, str) and project_id.isdigit():
+            project_id = int(project_id)
+        return cls(_kind=cls.KIND, _name=project_id, _parent=NoneKey.get_instance(),)
 
     @classmethod
     def build_from_key(cls, key: EntityKey) -> "ProjectKey":
@@ -29,7 +29,7 @@ class ProjectKey(EntityKey):
         if key.kind() != cls.KIND:
             raise ValueError(f"key.KIND must equal to {cls.KIND}: {key.key_literal()}")
 
-        return cls.build_by_id(task_id=key.name())
+        return cls.build_by_id(project_id=key.name())
 
     @classmethod
     def build_for_new(cls) -> "ProjectKey":

@@ -9,6 +9,8 @@ from gumo.core import NoneKey
 from gumo.core import EntityKeyGenerator
 from dataclass_type_validator import dataclass_type_validator
 
+from todo.domain.project import ProjectKey
+
 
 @dataclasses.dataclass(frozen=True)
 class TaskKey(EntityKey):
@@ -66,6 +68,7 @@ class TaskName:
 class Task:
     key: TaskKey
     name: TaskName
+    project_key: Optional[ProjectKey]
     finished_at: Optional[datetime.datetime]
     created_at: datetime.datetime
     updated_at: datetime.datetime
