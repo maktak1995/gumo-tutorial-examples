@@ -16,6 +16,7 @@ class TaskCreateService:
         task = Task(
             key=TaskKey.build_for_new(),
             name=TaskName(task_name),
+            project_key=None,
             finished_at=None,
             created_at=now,
             updated_at=now,

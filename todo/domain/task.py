@@ -87,8 +87,11 @@ class Task:
             **changes
         )
 
-    def with_finished_at(self, finished_at: Optional[datetime.datetime]) -> "Task":
+    def with_finished_at(self, finished_at: datetime.datetime) -> "Task":
         return self._clone(finished_at=finished_at)
+
+    def with_project_key(self, project_key: Optional[ProjectKey]) -> "Task":
+        return self._clone(project_key=project_key)
 
     def to_canceled_finish(self) -> "Task":
         return self._clone(finished_at=None)

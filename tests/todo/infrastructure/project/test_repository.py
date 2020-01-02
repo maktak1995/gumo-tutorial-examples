@@ -15,7 +15,7 @@ class TestProjectRepository(DatastoreRepositoryMixinForTest):
         assert self.count_entities() == 0
 
         project = Project(
-            key=ProjectKey.build_by_id(task_id=123),
+            key=ProjectKey.build_by_id(project_id=123),
             name=ProjectName("Project Name"),
             created_at=datetime.datetime(2019, 12, 1, tzinfo=datetime.timezone.utc),
         )
@@ -26,7 +26,7 @@ class TestProjectRepository(DatastoreRepositoryMixinForTest):
         self.cleanup_entities()
 
         project = Project(
-            key=ProjectKey.build_by_id(task_id=123),
+            key=ProjectKey.build_by_id(project_id=123),
             name=ProjectName("Project Name"),
             created_at=datetime.datetime(2019, 12, 1, tzinfo=datetime.timezone.utc),
         )

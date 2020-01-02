@@ -18,6 +18,7 @@ class TestTaskRepository(DatastoreRepositoryMixinForTest):
             key=TaskKey.build_by_id(task_id=123),
             name=TaskName("Task Name"),
             finished_at=None,
+            project_key=None,
             created_at=datetime.datetime(2019, 12, 1, tzinfo=datetime.timezone.utc),
             updated_at=datetime.datetime(2019, 12, 1, tzinfo=datetime.timezone.utc),
         )
@@ -31,6 +32,7 @@ class TestTaskRepository(DatastoreRepositoryMixinForTest):
             key=TaskKey.build_by_id(task_id=123),
             name=TaskName("Task Name"),
             finished_at=None,
+            project_key=None,
             created_at=datetime.datetime(2019, 12, 1, tzinfo=datetime.timezone.utc),
             updated_at=datetime.datetime(2019, 12, 1, tzinfo=datetime.timezone.utc),
         )
