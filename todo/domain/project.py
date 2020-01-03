@@ -38,7 +38,7 @@ class ProjectKey(EntityKey):
         return cls.build_from_key(entity_key)
 
     @property
-    def task_id(self) -> int:
+    def project_id(self) -> int:
         return self.name()
 
 

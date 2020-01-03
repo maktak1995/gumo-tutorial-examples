@@ -12,6 +12,15 @@
         <li>
             {% if task.is_finished %}✔{% endif %}
             {{ task.name.value }} ({{ task.created_at.isoformat() }})
+            <form id="projects_form" action="/tasks/{{ task.key.task_id }}/update/project" method="post">
+                <select id="projects" name="project_id">
+                    {% for project in projects %}
+                        <option value={{ project.key.project_id }}>{{ project.name.value }}</option>
+                    {% endfor %}
+                    <option value="None">None</option>
+                </select>
+                <input type="submit" value="save">
+            </form>
             <form action="/tasks/{{ task.key.task_id }}/update/name" method="post">
                 <input type="text" name="new_task_name">
                 <input type="submit" value="rename">
