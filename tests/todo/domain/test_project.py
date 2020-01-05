@@ -12,7 +12,7 @@ class TestProjectKey:
         key1 = ProjectKey.build_by_id(project_id=1)
         key2 = ProjectKey.build_by_id(project_id=1)
         assert key1 == key2
-        assert key1.task_id == 1
+        assert key1.project_id == 1
 
     def test_build_from_key(self):
         entity_key = EntityKeyFactory().build(kind="Project", name=1,)

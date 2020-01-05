@@ -40,8 +40,9 @@ class TaskStatusUpdateView(flask.views.MethodView):
         finished = flask.request.form.get("finished", "false") == "true"
         service: TaskStatusUpdateService = injector.get(TaskStatusUpdateService)
         service.execute(key=task_key, finished=finished)
+        print(flask.request.path)
 
-        return flask.redirect("/tasks")
+        return flask.redirect("/")
 
 
 class TaskNameUpdateView(flask.views.MethodView):
