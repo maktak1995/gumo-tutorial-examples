@@ -3,7 +3,8 @@ from gumo.datastore.infrastructure import DatastoreRepositoryMixin
 from gumo.datastore.infrastructure import DatastoreEntity
 
 from todo.application.task.repository import TaskRepository
-from todo.domain import Task, TaskKey, TaskName
+from todo.domain.task import Task, TaskKey, TaskName
+from todo.domain.project import ProjectKey
 from . import TaskDataModel
 
 
@@ -12,6 +13,8 @@ class DatastoreTaskRepository(DatastoreRepositoryMixin, TaskRepository):
         model = TaskDataModel(
             key=self.to_datastore_key(entity_key=task.key),
             name=task.name.value,
+            project_key=self.to_datastore_key(entity_key=task.project_key)
+            if task.project_key is not None else task.project_key,
             finished_at=task.finished_at,
             created_at=task.created_at,
             update_at=task.updated_at,
@@ -36,6 +39,8 @@ class DatastoreTaskRepository(DatastoreRepositoryMixin, TaskRepository):
         return Task(
             key=TaskKey.build_from_key(key=self.to_entity_key(datastore_key=model.key)),
             name=TaskName(model.name),
+            project_key=ProjectKey.build_from_key(key=self.to_entity_key(datastore_key=model.project_key))
+            if model.project_key is not None else model.project_key,
             finished_at=model.finished_at,
             created_at=model.created_at,
             updated_at=model.update_at,

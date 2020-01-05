@@ -3,7 +3,7 @@ import main
 from gumo.datastore.infrastructure.test_utils import DatastoreRepositoryMixinForTest
 from todo.application.task.repository import TaskRepository
 from todo.application.task import TaskCreateService, TaskStatusUpdateService, TaskNameUpdateService
-from todo.domain import TaskKey
+from todo.domain.task import TaskKey
 
 
 class TestTaskService(DatastoreRepositoryMixinForTest):

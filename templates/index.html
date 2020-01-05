@@ -8,9 +8,25 @@
     <h1>Gumo Example</h1>
 
     <h2>TODOs</h2>
-    {% for todo in todos %}
-        <p>{{ todo }}</p>
+    {% for sorted_task in sorted_tasks %}
+    <h3>{{ sorted_task.project_name }}</h3>
+    <ul>
+        {% for task in sorted_task.tasks %}
+        <li>
+            {% if task.is_finished %}✔{% endif %}
+            {{ task.name.value }} ({{ task.created_at.isoformat() }})
+            <form style="display: inline-block" action="/tasks/{{ task.key.task_id }}/update/status" method="post">
+                {% if task.is_finished %}
+                    <input type="hidden" name="finished" value="false">
+                    <input type="submit" value="undone">
+                {% else %}
+                    <input type="hidden" name="finished" value="true">
+                    <input type="submit" value="done">
+                {% endif %}
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
     {% endfor %}
-
 </body>
 </html>
