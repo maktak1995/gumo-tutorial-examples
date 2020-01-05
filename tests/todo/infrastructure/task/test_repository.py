@@ -12,7 +12,6 @@ class TestTaskRepository(DatastoreRepositoryMixinForTest):
 
     def test_save(self):
         self.cleanup_entities()
-        self.cleanup_entities()
         assert self.count_entities() == 0
 
         task = Task(
@@ -27,7 +26,6 @@ class TestTaskRepository(DatastoreRepositoryMixinForTest):
         assert self.count_entities() == 1
 
     def test_save_and_fetch(self):
-        self.cleanup_entities()
         self.cleanup_entities()
         assert self.count_entities() == 0
 
