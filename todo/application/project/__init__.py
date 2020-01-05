@@ -9,7 +9,7 @@ from todo.domain.project import Project, ProjectKey, ProjectName
 class ProjectCreateService:
     @inject
     def __init__(self, project_repository: ProjectRepository):
-        self.project_repository = project_repository
+        self._project_repository = project_repository
 
     def execute(self, project_name: str) -> Project:
         now = datetime.datetime.utcnow().astimezone(tz=datetime.timezone.utc)
@@ -19,6 +19,6 @@ class ProjectCreateService:
             created_at=now,
         )
 
-        self.project_repository.save(project=project)
+        self._project_repository.save(project=project)
 
         return project
