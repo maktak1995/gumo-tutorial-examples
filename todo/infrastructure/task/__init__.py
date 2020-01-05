@@ -5,6 +5,7 @@ from typing import Optional
 from gumo.datastore.infrastructure import DataModel
 from gumo.datastore.infrastructure import DatastoreEntity
 from gumo.datastore.infrastructure import DatastoreKey
+from dataclass_type_validator import dataclass_type_validator
 
 
 @dataclasses.dataclass()
@@ -13,10 +14,13 @@ class TaskDataModel(DataModel):
 
     key: DatastoreKey
     name: str
-    project_key: DatastoreKey
+    project_key: Optional[DatastoreKey]
     finished_at: Optional[datetime.datetime]
     created_at: datetime.datetime
     update_at: datetime.datetime
+
+    def __post_init__(self):
+        dataclass_type_validator(self)
 
     def to_datastore_entity(self) -> "DatastoreEntity":
         doc = DatastoreEntity(
