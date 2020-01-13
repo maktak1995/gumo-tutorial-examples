@@ -28,6 +28,16 @@
             <form action="/tasks/{{ task.key.task_id }}/delete" method="post">
                 <input type="submit" value="delete">
             </form>
+            <form style="display: inline-block" action="/tasks/{{ task.key.task_id }}/update/status" method="post">
+                <input type="hidden" name="redirectTo" value="/tasks">
+                {% if task.is_finished %}
+                    <input type="hidden" name="finished" value="false">
+                    <input type="submit" value="undone">
+                {% else %}
+                    <input type="hidden" name="finished" value="true">
+                    <input type="submit" value="done">
+                {% endif %}
+            </form>
         </li>
     {% endfor %}
 </ul>

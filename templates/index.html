@@ -16,6 +16,7 @@
             {% if task.is_finished %}✔{% endif %}
             {{ task.name.value }} ({{ task.created_at.isoformat() }})
             <form style="display: inline-block" action="/tasks/{{ task.key.task_id }}/update/status" method="post">
+                <input type="hidden" name="redirectTo" value="/">
                 {% if task.is_finished %}
                     <input type="hidden" name="finished" value="false">
                     <input type="submit" value="undone">

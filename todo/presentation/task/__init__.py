@@ -38,11 +38,14 @@ class TaskStatusUpdateView(flask.views.MethodView):
     def post(self, task_id):
         task_key = TaskKey.build_by_id(task_id=task_id)
         finished = flask.request.form.get("finished", "false") == "true"
+        redirect_to = flask.request.form.get("redirectTo", "/tasks")
+        if not redirect_to.startswith("/"):
+            redirect_to = "/tasks"
+
         service: TaskStatusUpdateService = injector.get(TaskStatusUpdateService)
         service.execute(key=task_key, finished=finished)
-        print(flask.request.path)
 
-        return flask.redirect("/")
+        return flask.redirect(redirect_to)
 
 
 class TaskNameUpdateView(flask.views.MethodView):
